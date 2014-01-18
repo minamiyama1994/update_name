@@ -59,7 +59,7 @@ namespace update_name
             {
                 if (pattern1_ == null)
                 {
-                    pattern1_ = new Regex("@[a-zA-Z_]+[ ]+update_name[ ]+(.+)");
+                    pattern1_ = new Regex("^@[a-zA-Z_]+[ ]+update_name[ ]+(.+)$");
                 }
                 return pattern1_;
             }
@@ -71,7 +71,7 @@ namespace update_name
             {
                 if (pattern2_ == null)
                 {
-                    pattern2_ = new Regex("(.+)[\\(（]@[a-zA-Z_]+[\\)）]");
+                    pattern2_ = new Regex(@"^(.+)[\(（]@[a-zA-Z_]+[\)）]$");
                 }
                 return pattern2_;
             }
@@ -80,7 +80,7 @@ namespace update_name
         {
             var match1 = pattern1.Match(s.Text);
             var match2 = pattern2.Match(s.Text);
-            var match = (match1 != null) ? match1 : match2;
+            var match = match1.Success ? match1 : match2;
             if (match.Success)
             {
                 t.Account.UpdateProfile(name => match.Groups[1].Value);
