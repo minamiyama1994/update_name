@@ -59,7 +59,7 @@ namespace update_name
             {
                 if (pattern1_ == null)
                 {
-                    pattern1_ = new Regex("^@[a-zA-Z_]+[ ]+update_name[ ]+(.+)$");
+                    pattern1_ = new Regex("^@[a-zA-Z0-9_]+[ ]+update_name[ ]+(.+)$");
                 }
                 return pattern1_;
             }
@@ -71,7 +71,7 @@ namespace update_name
             {
                 if (pattern2_ == null)
                 {
-                    pattern2_ = new Regex(@"^(.+)[\(（]@[a-zA-Z_]+[\)）]$");
+                    pattern2_ = new Regex(@"^(.+)[\(（]@[a-zA-Z0-9_]+[\)）]$");
                 }
                 return pattern2_;
             }
