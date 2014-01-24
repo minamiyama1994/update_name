@@ -104,7 +104,7 @@ namespace update_name
         {
             try
             {
-                var text = "起動しました！ /" + DateTime.Now;
+                var text = "update_name、起動しました！ /" + DateTime.Now;
                 t.Statuses.Update(status => text);
                 Console.WriteLine(text);
                 foreach (var m in t.Streaming.StartStream(StreamingType.Public, new StreamingParameters(track => "@" + t.Account.VerifyCredentials().ScreenName)))
