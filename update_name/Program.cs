@@ -84,7 +84,9 @@ namespace update_name
             if (match.Success)
             {
                 t.Account.UpdateProfile(name => match.Groups[1].Value);
-                t.Statuses.Update(status => s.User.Name + "氏(@" + s.User.ScreenName + ")により「" + match.Groups[1].Value + "」に改名しました！", in_reply_to_status_id => s.ID);
+                var text = s.User.Name + "氏(@" + s.User.ScreenName + ")により「" + match.Groups[1].Value + "」に改名しました！" ;
+                t.Statuses.Update(status => text, in_reply_to_status_id => s.ID);
+                Console.WriteLine(text);
             }
         }
         private static void reply(Status s)
@@ -102,6 +104,9 @@ namespace update_name
         {
             try
             {
+                var text = "起動しました！ /" + DateTime.Now;
+                t.Statuses.Update(status => text);
+                Console.WriteLine(text);
                 foreach (var m in t.Streaming.StartStream(StreamingType.Public, new StreamingParameters(track => "@" + t.Account.VerifyCredentials().ScreenName)))
                 {
                     if (m is StatusMessage)
